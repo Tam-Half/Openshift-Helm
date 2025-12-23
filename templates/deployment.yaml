@@ -1,0 +1,78 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.name }}-deployment
+  namespace: {{ .Release.Namespace }}
+  labels: {{ include "common.labels" . | nindent 6 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels: {{ include "common.labels" . | nindent 8 }}
+  template:
+    metadata:
+      labels: {{ include "common.labels" . | nindent 10 }}
+    spec:
+      containers:
+        - name: {{ .Values.image.name }}
+          image: tamtran0210/{{ .Values.image.repository }}:{{ .Values.image.tag  }}
+          ports:
+            - containerPort: {{ .Values.image.port }}
+        
+          {{- if (or .Values.secret.enabled .Values.extraSecrets.enabled) }}
+          envFrom:
+            {{- if .Values.secret.name }}
+            - secretRef:
+                name: {{ include "mychart.secretName" . }}-secret
+                optional: false
+              {{- end }}
+
+              {{- if .Values.extraSecrets.enabled }}
+
+              {{- with .Values.extraSecrets }}
+              {{- range . }}
+            - secretRef:
+                name: {{ .name }}
+              {{- end }}
+              {{- end }}
+              {{- end }}      
+          {{- end }}
+
+          {{- if .Values.env.enabled }}
+          env:
+            {{- range $key, $value := .Values.env }}
+            {{- if (kindIs "map" $value) }}
+            - name: {{ $value.name }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $value.valueFrom.secretKeyRef.name }}
+                  key: {{ $value.valueFrom.secretKeyRef.key }}
+                  optional: {{ $value.valueFrom.secretKeyRef.optional | default false }}
+              {{- end }}
+              {{- end }}
+          {{- end }}
+
+
+          {{- if .Values.resources.enabled }}
+          resources:
+            {{- if .Values.resources.request }}
+            requests:
+              memory: "{{ .Values.resources.request.memory }}"
+              cpu: "{{ .Values.resources.request.cpu }}"
+            {{- end }}
+            {{- if .Values.resources.limit }}
+            limits:
+              memory: "{{ .Values.resources.limit.memory }}"
+              cpu: "{{ .Values.resources.limit.cpu }}"
+            {{- end }}
+          {{- end }}
+
+          {{- if .Values.volumeMounts }}
+          volumeMounts:
+          {{ toYaml .Values.volumeMounts | nindent 12 }}
+          {{- end }}
+
+      {{- if .Values.volumes }}
+      volumes:
+      {{ toYaml .Values.volumes | nindent 8 }}
+      {{- end }}

@@ -1,0 +1,23 @@
+
+---
+{{- if .Values.service.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.name }}-service
+  namespace: {{ .Release.Namespace }}
+spec:
+  internalTrafficPolicy: {{ .Values.internalTrafficPolicy }}
+  ipFamilies:
+    - IPv4
+  ipFamilyPolicy: {{ .Values.ipFamilyPolicy }}
+  ports:
+    - name:   {{ .Values.nameTCP }}
+      port:   {{ .Values.secret.portService }}
+      targetPort: {{ .Values.secret.portTarget }}
+  selector:
+    {{ include "common.labels" . | nindent 4 }}
+  sessionAffinity: None
+  type: {{ .Values.typeTCP}}
+
+{{- end }}

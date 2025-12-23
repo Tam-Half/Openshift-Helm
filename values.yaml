@@ -1,0 +1,46 @@
+# ==========================================
+# 1. APPLICATION METADATA
+# ==========================================
+
+#Info of Replication:
+replicaCount: 1
+
+# ==========================================
+# 2. TCP/CLUSTERIP
+# ==========================================
+
+internalTrafficPolicy: Cluster
+ipFamilyPolicy: SingleStack
+typeTCP: ClusterIP
+nameTCP: tcp
+
+# ==========================================
+# 3. INGRESS/NGINX
+# ==========================================
+
+ingressClassName: nginx
+pathType: Prefix
+
+# ==========================================
+# 4. HPA
+# ==========================================
+
+# hpa:
+#   name: orderservice-autoscaling
+#   minRep: 2
+#   maxRep: 4
+
+# ==========================================
+# 5. storage, pv and pvc
+# ==========================================
+# storage:
+#   name: nfs-storage
+# pv:
+#   name: nfs-pv-tesing
+#   storage: 10Gi
+#   accessModes: ReadWriteMany
+
+# pvc:
+#   name: nfs-pvc
+#   storage: 1Gi
+#   accessModes: ReadWriteMany
