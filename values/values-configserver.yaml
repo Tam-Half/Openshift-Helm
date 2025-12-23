@@ -24,13 +24,13 @@ resources:
 # SERVICE
 #=====================
 service:
-  enabled: true
+  enabled: false
 
 #======================
 # INGRESS
 #=====================
 ingress: 
-  enabled: true
+  enabled: false
   domain: configserver.argocd
 
 #======================
