@@ -49,7 +49,7 @@ configmap:
 route:
   enabled: true
   hostService: configserver
-  defaultHost: apps.ocp-poc.lpc.lab
+  defaultHost: 
 
 
 #======================
