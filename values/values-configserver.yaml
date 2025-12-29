@@ -24,7 +24,7 @@ resources:
 # SERVICE
 #=====================
 service:
-  enabled: false
+  enabled: true
 
 #======================
 # INGRESS
