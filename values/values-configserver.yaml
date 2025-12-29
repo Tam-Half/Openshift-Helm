@@ -43,6 +43,14 @@ configmap:
 #     server.port: "${PORT_SERVICE}"
 #     spring.application.name: "${NAME_SERVICE}"
 
+#======================
+# ROUTE
+#======================
+route:
+  enabled: true
+  hostService: configserver
+  defaultHost: apps.ocp-poc.lpc.lab
+
 
 #======================
 # VOLUMES AND MOUNTVOLUMES
