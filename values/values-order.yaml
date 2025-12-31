@@ -30,11 +30,15 @@ service:
 # INGRESS
 #=====================
 ingress: 
-  enabled: true
+  enabled: false
   domain: order.argocd
+
+  route:
+    enabled: false
 #======================
 # CONFIGMAP
 #=====================
+
 
 configmap:
   enabled: false
