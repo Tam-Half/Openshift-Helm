@@ -32,9 +32,9 @@ service:
 ingress: 
   enabled: false
   domain: order.argocd
-
-  route:
-    enabled: false
+  
+route:
+  enabled: false
 #======================
 # CONFIGMAP
 #=====================
