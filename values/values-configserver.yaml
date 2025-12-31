@@ -70,9 +70,9 @@ secret:
   DB_HOST: 0.tcp.ap.ngrok.io
   DB_USER: sa
   DB_PASS: Root1234
-  SPRING_RABBITMQ_USERNAME: testuser 
-  SPRING_RABBITMQ_PASSWORD: testpass
-  SPRING_RABBITMQ_HOST: my-rabbit.rabbitmq.svc.cluster.local
+  SPRING_RABBITMQ_USERNAME: default_user_IRR_5BKklxM_f0qmfib 
+  SPRING_RABBITMQ_PASSWORD: Xuc4F62yQzJlSzM18bM9fAf873icE-D-
+  SPRING_RABBITMQ_HOST: rabbitmq-deploy.rabbitmq.svc.cluster.local
   SPRING_RABBITMQ_PORT: 5672
 
 
