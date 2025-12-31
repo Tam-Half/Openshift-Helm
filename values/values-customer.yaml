@@ -33,6 +33,9 @@ ingress:
   enabled: false
   domain: customer.argocd
 
+route:
+  enabled: false
+
 #======================
 # CONFIGMAP
 #=====================
