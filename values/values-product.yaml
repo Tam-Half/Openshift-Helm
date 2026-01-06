@@ -8,7 +8,7 @@ applabels: productservice
 image:
   name: productservice-container
   repository: productservice
-  tag: "04"
+  tag: "05"
   port: 120
 
 resources:
