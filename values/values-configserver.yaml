@@ -29,7 +29,7 @@ service:
 #======================
 # INGRESS
 #=====================
-ingress: 
+ingress:
   enabled: false
   domain: configserver.argocd
 
@@ -49,14 +49,14 @@ configmap:
 route:
   enabled: true
   hostService: configserver
-  defaultHost: 
+  defaultHost:
 
 
 #======================
 # VOLUMES AND MOUNTVOLUMES
 #======================
 
-env: 
+env:
   enabled: false
   data: {}
 
@@ -70,8 +70,8 @@ secret:
   DB_HOST: 0.tcp.ap.ngrok.io
   DB_USER: sa
   DB_PASS: Root1234
-  SPRING_RABBITMQ_USERNAME: 
-  SPRING_RABBITMQ_PASSWORD: 
+  SPRING_RABBITMQ_USERNAME:
+  SPRING_RABBITMQ_PASSWORD:
   SPRING_RABBITMQ_HOST: .rabbitmq.svc.cluster.local
   SPRING_RABBITMQ_PORT: 5672
 
@@ -82,22 +82,24 @@ extraSecrets:
 #======================
 # PVC
 #======================
-pvc: 
+pvc:
   enabled: true
   name: configserver-pvc
-  storage: 3Gi
   accessMode: ReadWriteMany
   storageClass: nfs-storage
+  storage: 3Gi
+  storageClassName:
+    name: nfs-storage
 
 #----------------------
 # VOLUMES AND MOUNTVOLUMES
 #----------------------
-volumeMounts: 
+volumeMounts:
   enabled: true
   name: configserver-pvc
   mountPath: /tmp/
 
-volumes: 
+volumes:
   enabled: true
   name: configserver-pvc
   persistentVolumeClaim:
