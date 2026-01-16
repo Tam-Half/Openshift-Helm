@@ -85,7 +85,7 @@ extraSecrets:
 pvc:
   enabled: true
   name: configserver-pvc
-  accessMode: ReadWriteMany
+  accessModes: ReadWriteMany
   storageClass: nfs-storage
   storage: 3Gi
   storageClassName:
