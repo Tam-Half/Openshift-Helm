@@ -100,5 +100,5 @@ volumeMounts:
 volumes: 
   enabled: true
   name: configserver-pvc
-    persistentVolumeClaim:
+  persistentVolumeClaim:
       claimName: configserver-pvc
