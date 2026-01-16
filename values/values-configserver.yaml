@@ -96,11 +96,13 @@ pvc:
 #----------------------
 volumeMounts:
   enabled: true
-  name: configserver-pvc
-  mountPath: /tmp/
+  items:
+    - name: configserver-pvc
+      mountPath: /tmp/
 
 volumes:
   enabled: true
-  name: configserver-pvc
-  persistentVolumeClaim:
-      claimName: configserver-pvc
+  items:
+    - name: configserver-pvc
+      persistentVolumeClaim:
+        claimName: configserver-pvc
