@@ -83,4 +83,22 @@ extraSecrets:
 # PVC
 #======================
 pvc: 
-  enabled: false
+  enabled: true
+  name: configserver-pvc
+  storage: 3Gi
+  accessMode: ReadWriteMany
+  storageClass: nfs-storage
+
+#----------------------
+# VOLUMES AND MOUNTVOLUMES
+#----------------------
+volumeMounts: 
+  enabled: true
+  name: configserver-pvc
+  mountPath: /tmp/
+
+volumes: 
+  enabled: true
+  name: configserver-pvc
+    persistentVolumeClaim:
+      claimName: configserver-pvc
